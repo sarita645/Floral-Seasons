@@ -399,13 +399,15 @@ nav a:hover::after { width:100%; }
 }
 .monthly-img-frame svg { width:100%; height:100%; }
 .monthly-caption {
-  position:absolute; bottom:0; left:0; right:0; padding:20px 22px;
-  background:linear-gradient(to top,rgba(44,36,32,.78),transparent);
+  position:absolute; bottom:0; left:0; right:0;
+  padding:28px 22px 22px;
+  background:linear-gradient(to top,rgba(44,36,32,.82) 0%,rgba(44,36,32,.5) 60%,transparent 100%);
   color:var(--cream); font-family:'Noto Serif TC',serif; font-size:12px;
-  letter-spacing:.15em;
+  letter-spacing:.15em; line-height:1;
+  display:flex; flex-direction:column; gap:8px;
 }
 .monthly-caption-sub {
-  font-size:11px; color:rgba(245,240,232,.55); margin-top:4px; letter-spacing:.1em;
+  font-size:11px; color:rgba(245,240,232,.55); letter-spacing:.1em; line-height:1;
 }
 
 /* ══════════════════════════════
@@ -648,7 +650,7 @@ footer {
     <!-- 首頁主視覺圖片 — 換圖只需替換 swatches-01.png -->
     <div class="swatch-cluster fade-up">
       <img
-        src="https://sarita645.github.io/Floral-Seasons/assets/images/homepage/swatches/swatch-01.png"
+        src="assets/images/homepage/swatches/swatch-01.png"
         alt="歲月花跡 · 本月花材"
         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
       >
@@ -832,10 +834,6 @@ footer {
         <circle cx="253" cy="118" r="5" fill="rgba(192,178,212,.85)" stroke="#c0b2d4" stroke-width="1.2"/>
         <circle cx="261" cy="110" r="3.5" fill="rgba(192,178,212,.7)" stroke="#c0b2d4" stroke-width="1"/>
         <circle cx="247" cy="108" r="4" fill="rgba(192,178,212,.75)" stroke="#c0b2d4" stroke-width="1"/>
-        <!-- caption -->
-        <rect x="0" y="428" width="400" height="72" fill="rgba(44,36,32,.68)"/>
-        <text x="22" y="455" font-family="serif" font-size="15" fill="rgba(245,240,232,.92)" letter-spacing="3">康乃馨 · Carnation</text>
-        <text x="22" y="477" font-family="serif" font-size="11" fill="rgba(245,240,232,.48)" letter-spacing="2">花語：母愛 ｜ 五月盛產</text>
       </svg>
       <div class="monthly-caption">
         <div>五月主角 · 2036</div>
