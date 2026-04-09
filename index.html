@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>歲月花跡 Floral Seasons</title>
+<title>歲月花跡 · 認識花，找到對的花店</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Sans+TC:wght@300;400&display=swap" rel="stylesheet">
@@ -460,51 +460,96 @@ nav a:hover::after { width:100%; }
 /* ══════════════════════════════
    CTA / BOOKING
 ══════════════════════════════ */
-.section-cta {
-  padding:88px 52px; background:var(--deep-bark);
-  display:grid; grid-template-columns:1fr 0.5px 1fr; gap:0;
+/* ══════════════════════════════
+   SELLERS SECTION
+══════════════════════════════ */
+.section-sellers {
+  padding:88px 52px;
+  background:var(--deep-bark);
   position:relative; overflow:hidden;
 }
-.section-cta::before {
+.section-sellers::before {
   content:''; position:absolute; inset:0;
-  background:radial-gradient(ellipse at 70% 50%,rgba(184,151,92,.1) 0%,transparent 60%);
+  background:radial-gradient(ellipse at 70% 30%,rgba(184,151,92,.1) 0%,transparent 55%);
   pointer-events:none;
 }
-.cta-divider { background:rgba(255,255,255,.08); }
-.cta-text { padding-right:60px; position:relative; }
-.cta-text .section-label { color:var(--gold-light); }
-.cta-text .section-title { color:var(--cream); }
-.cta-body {
+.sellers-header {
+  display:flex; justify-content:space-between; align-items:flex-end;
+  margin-bottom:52px; position:relative;
+}
+.sellers-header .section-label { color:var(--gold-light); }
+.sellers-header .section-title { color:var(--cream); }
+.sellers-note {
+  font-family:'EB Garamond',serif; font-style:italic;
+  font-size:13px; letter-spacing:.18em;
+  color:rgba(245,240,232,.4);
+}
+.sellers-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:2px;
+  position:relative;
+}
+.seller-card {
+  background:rgba(255,255,255,.05);
+  border:0.5px solid rgba(255,255,255,.1);
+  padding:36px 32px;
+  display:flex; flex-direction:column; gap:0;
+  transition:background .35s, border-color .35s;
+  position:relative; overflow:hidden;
+}
+.seller-card::before {
+  content:''; position:absolute; top:0; left:0; right:0;
+  height:2px; opacity:0; transition:opacity .35s;
+}
+.seller-card:hover { background:rgba(255,255,255,.09); border-color:rgba(255,255,255,.2); }
+.seller-card:hover::before { opacity:1; }
+.seller-card-top {
+  display:flex; justify-content:space-between; align-items:flex-start;
+  margin-bottom:20px;
+}
+.seller-region {
+  font-family:'EB Garamond',serif; font-style:italic;
+  font-size:11px; letter-spacing:.22em; color:var(--gold);
+}
+.seller-badge {
+  font-size:10px; letter-spacing:.14em;
+  color:rgba(245,240,232,.5);
+  border:0.5px solid rgba(245,240,232,.2);
+  padding:3px 10px;
+}
+.seller-name {
+  font-family:'Noto Serif TC',serif; font-size:20px; font-weight:500;
+  letter-spacing:.1em; color:var(--cream); margin-bottom:8px;
+}
+.seller-specialty {
   font-family:'Noto Serif TC',serif; font-weight:300;
-  font-size:14px; line-height:2.2; color:rgba(245,240,232,.7); margin-top:18px;
+  font-size:12px; letter-spacing:.1em; color:rgba(245,240,232,.55);
+  margin-bottom:20px; line-height:1.9;
 }
-.cta-form { padding-left:60px; display:flex; flex-direction:column; gap:12px; position:relative; }
-.form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-.form-field { display:flex; flex-direction:column; gap:6px; }
-.form-label {
+.seller-tags {
+  display:flex; gap:6px; flex-wrap:wrap; margin-bottom:28px;
+}
+.seller-tag {
+  font-size:11px; letter-spacing:.1em;
+  color:rgba(245,240,232,.6);
+  border:0.5px solid rgba(245,240,232,.18);
+  padding:3px 12px;
+}
+.seller-link {
+  margin-top:auto;
   font-family:'Noto Serif TC',serif; font-size:12px;
-  letter-spacing:.15em; color:rgba(245,240,232,.6);
+  letter-spacing:.18em; color:var(--deep-bark);
+  background:var(--cream); padding:10px 20px;
+  display:inline-block; text-decoration:none;
+  transition:background .3s;
+  align-self:flex-start;
 }
-.form-input, .form-select {
-  background:rgba(255,255,255,.1); border:0.5px solid rgba(255,255,255,.18);
-  color:var(--cream); padding:11px 14px;
-  font-family:'Noto Serif TC',serif; font-size:13px;
-  letter-spacing:.08em; outline:none; transition:border-color .3s;
-  -webkit-appearance:none;
-}
-.form-input::placeholder { color:rgba(245,240,232,.3); }
-.form-input:focus,.form-select:focus { border-color:rgba(255,255,255,.4); }
-.form-select option { background:var(--deep-bark); }
-.form-textarea { resize:none; }
-.form-submit {
-  margin-top:6px; padding:14px; background:var(--cream); color:var(--deep-bark);
-  border:none; cursor:pointer; font-family:'Noto Serif TC',serif;
-  font-size:13px; letter-spacing:.2em; transition:all .3s;
-}
-.form-submit:hover { background:var(--parchment); transform:translateY(-1px); }
-.form-note {
-  font-size:11px; letter-spacing:.1em; color:rgba(245,240,232,.4);
-  font-family:'Noto Sans TC',sans-serif; font-weight:300; text-align:center;
+.seller-link:hover { background:var(--parchment); }
+.sellers-disclaimer {
+  margin-top:40px; padding-top:28px;
+  border-top:0.5px solid rgba(255,255,255,.08);
+  font-family:'Noto Sans TC',sans-serif; font-weight:300;
+  font-size:12px; letter-spacing:.08em;
+  color:rgba(245,240,232,.3); text-align:center;
 }
 
 /* ══════════════════════════════
@@ -569,8 +614,7 @@ footer {
     <a href="#">時令之詩</a>
     <a href="#">花間辭典</a>
     <a href="#">12月花曆</a>
-    <a href="#">會員中心</a>
-    <a href="#booking" class="nav-cta">私人訂製</a>
+    <a href="#sellers" class="nav-cta">推薦花店</a>
   </nav>
 </header>
 
@@ -583,13 +627,13 @@ footer {
       <em>Every bloom, a silent language</em>
     </h1>
     <p class="hero-desc fade-up">
-      透過花語、故事與專業諮詢，<br>
-      將花藝轉化為傳遞情感的橋樑。<br>
-      專人預約制，只為您留存最高質感的每一刻。
+      透過花語、故事與花材知識，<br>
+      帶你認識每一種花的語言。<br>
+      從了解花開始，找到最適合的一束。
     </p>
     <div class="hero-actions fade-up">
       <a href="#monthly" class="btn-primary">探索本月花材</a>
-      <a href="#booking" class="btn-ghost">了解訂製服務</a>
+      <a href="#sellers" class="btn-ghost">找推薦花店</a>
     </div>
   </div>
 
@@ -604,7 +648,7 @@ footer {
     <!-- 首頁主視覺圖片 — 換圖只需替換 swatches-01.png -->
     <div class="swatch-cluster fade-up">
       <img
-        src="assets/images/homepage/swatches/swatch-01.png"
+        src="https://sarita645.github.io/Floral-Seasons/assets/images/homepage/swatches/swatch-01.png"
         alt="歲月花跡 · 本月花材"
         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
       >
@@ -750,7 +794,7 @@ footer {
       <span class="pair-tag">桔梗</span>
       <span class="pair-tag">圓葉尤加利</span>
     </div>
-    <a href="#booking" class="btn-primary">查看完整搭配方案</a>
+    <a href="#sellers" class="btn-primary">查看推薦花店</a>
   </div>
   <div class="monthly-divider"></div>
   <div class="monthly-visual fade-up" style="transition-delay:.2s">
@@ -804,106 +848,177 @@ footer {
 <!-- ═══ QUOTE ═══ -->
 <section class="section-quote">
   <p class="quote-text fade-up">
-    「 送一束花，<br>不只是給花，<br>而是給那個人看見你記得她的樣子 」
+    「 每一種花，都有它想說的話。<br>先認識花，再找到懂它的人 」
   </p>
-  <span class="quote-source fade-up">— 歲月花跡 品牌理念</span>
+  <span class="quote-source fade-up">— 歲月花跡 編輯理念</span>
 </section>
 
 <!-- ═══ RECIPIENT ═══ -->
 <section class="section-recipient">
   <div class="fade-up">
-    <p class="section-label">贈送對象 · For Someone Special</p>
-    <h2 class="section-title">選對花，傳遞最真實的心意</h2>
+    <p class="section-label">依心情選花 · Find by Feeling</p>
+    <h2 class="section-title">你想表達什麼？<br>讓花語幫你說</h2>
   </div>
   <div class="recip-grid">
     <div class="recip-card fade-up">
       <div class="recip-bar" style="background:var(--mist-rose)"></div>
-      <div class="recip-title">致 摯愛</div>
-      <div class="recip-sub">浪漫、熱烈<br>唯一的承諾</div>
+      <div class="recip-title">愛與承諾</div>
+      <div class="recip-sub">玫瑰、鬱金香<br>表達最深的情感</div>
     </div>
     <div class="recip-card fade-up" style="transition-delay:.07s">
       <div class="recip-bar" style="background:var(--mist-lav)"></div>
-      <div class="recip-title">致 長輩</div>
-      <div class="recip-sub">穩重、健康<br>歲月的敬意</div>
+      <div class="recip-title">感謝與敬意</div>
+      <div class="recip-sub">康乃馨、桔梗<br>承載溫柔的心意</div>
     </div>
     <div class="recip-card fade-up" style="transition-delay:.14s">
       <div class="recip-bar" style="background:var(--mist-blue)"></div>
-      <div class="recip-title">致 摯友</div>
-      <div class="recip-sub">活潑、並肩<br>生活中的小確幸</div>
+      <div class="recip-title">友誼與陪伴</div>
+      <div class="recip-sub">海芋、繡球花<br>純粹且長久</div>
     </div>
     <div class="recip-card fade-up" style="transition-delay:.21s">
       <div class="recip-bar" style="background:var(--mist-wheat)"></div>
-      <div class="recip-title">致 商務</div>
-      <div class="recip-sub">大氣、繁盛<br>祝禱事業長青</div>
+      <div class="recip-title">祝賀與繁盛</div>
+      <div class="recip-sub">向日葵、大理花<br>帶來光與能量</div>
     </div>
     <div class="recip-card fade-up" style="transition-delay:.28s">
       <div class="recip-bar" style="background:var(--mist-sage)"></div>
-      <div class="recip-title">致 自己</div>
-      <div class="recip-sub">儀式感、舒壓<br>與心靈的對話</div>
+      <div class="recip-title">療癒與自在</div>
+      <div class="recip-sub">文心蘭、茉莉<br>安靜地陪伴自己</div>
     </div>
   </div>
 </section>
 
-<!-- ═══ CTA / BOOKING ═══ -->
-<section class="section-cta" id="booking">
-  <div class="cta-text fade-up">
-    <p class="section-label">私人訂製 · Custom Order</p>
-    <h2 class="section-title">每一束花<br>都值得被認真對待</h2>
-    <p class="cta-body">
-      我們採專人預約制，確保每位顧客都能獲得最細緻的花藝諮詢。<br><br>
-      告訴我們您的需求——贈送對象、喜愛色系、重要日期——<br>
-      花藝師將為您量身打造獨一無二的花語故事。<br><br>
-      <strong style="color:rgba(245,240,232,.9);letter-spacing:.1em">建議提前 3–5 天預約 ｜ NT$ 2,000 起</strong>
-    </p>
+<!-- ═══ 推薦花店 SELLERS ═══ -->
+<section class="section-sellers" id="sellers">
+  <div class="sellers-header fade-up">
+    <div>
+      <p class="section-label">推薦花店 · Recommended Sellers</p>
+      <h2 class="section-title">認識花之後，<br>找到對的花店</h2>
+    </div>
+    <span class="sellers-note">精選台灣優質花藝工作室</span>
   </div>
-  <div class="cta-divider"></div>
-  <div class="cta-form fade-up" style="transition-delay:.15s">
-    <div class="form-row">
-      <div class="form-field">
-        <label class="form-label">您的姓名</label>
-        <input class="form-input" type="text" placeholder="王小明">
+
+  <div class="sellers-grid">
+
+    <div class="seller-card fade-up" style="--accent:var(--mist-blue)">
+      <style>.seller-card:nth-child(1)::before{background:var(--mist-blue)}</style>
+      <div class="seller-card-top">
+        <span class="seller-region">台北 · 大安區</span>
+        <span class="seller-badge">擅長日式</span>
       </div>
-      <div class="form-field">
-        <label class="form-label">希望取貨日期</label>
-        <input class="form-input" type="text" placeholder="2036 / 06 / 08">
+      <div class="seller-name">花草人間</div>
+      <div class="seller-specialty">
+        以極簡線條詮釋花材本質，<br>
+        擅長海芋、文心蘭、葉材搭配。
       </div>
-    </div>
-    <div class="form-field">
-      <label class="form-label">贈送對象</label>
-      <select class="form-select">
-        <option value="">請選擇贈送對象</option>
-        <option>致 摯愛</option><option>致 長輩</option>
-        <option>致 摯友</option><option>致 商務</option><option>致 自己</option>
-      </select>
-    </div>
-    <div class="form-row">
-      <div class="form-field">
-        <label class="form-label">偏好色系</label>
-        <select class="form-select">
-          <option value="">色系偏好</option>
-          <option>暖色系（紅／粉／橘）</option>
-          <option>冷色系（白／藍／紫）</option>
-          <option>大地色系</option>
-          <option>交由花藝師決定</option>
-        </select>
+      <div class="seller-tags">
+        <span class="seller-tag">海芋</span>
+        <span class="seller-tag">繡球</span>
+        <span class="seller-tag">葉材</span>
       </div>
-      <div class="form-field">
-        <label class="form-label">預算區間</label>
-        <select class="form-select">
-          <option value="">預算區間</option>
-          <option>NT$ 2,000–3,000</option>
-          <option>NT$ 3,000–5,000</option>
-          <option>NT$ 5,000 以上</option>
-        </select>
+      <a href="#" class="seller-link">前往查看 →</a>
+    </div>
+
+    <div class="seller-card fade-up" style="transition-delay:.08s">
+      <style>.seller-card:nth-child(2)::before{background:var(--mist-rose)}</style>
+      <div class="seller-card-top">
+        <span class="seller-region">台中 · 西區</span>
+        <span class="seller-badge">擅長歐式</span>
       </div>
+      <div class="seller-name">初夏花事</div>
+      <div class="seller-specialty">
+        豐盛的層次感是招牌，<br>
+        玫瑰、芍藥、大理花的組合大師。
+      </div>
+      <div class="seller-tags">
+        <span class="seller-tag">玫瑰</span>
+        <span class="seller-tag">芍藥</span>
+        <span class="seller-tag">大理花</span>
+      </div>
+      <a href="#" class="seller-link">前往查看 →</a>
     </div>
-    <div class="form-field">
-      <label class="form-label">補充需求（選填）</label>
-      <textarea class="form-input form-textarea" rows="3" placeholder="場合、特殊花材需求、包裝偏好⋯⋯"></textarea>
+
+    <div class="seller-card fade-up" style="transition-delay:.16s">
+      <style>.seller-card:nth-child(3)::before{background:var(--mist-sage)}</style>
+      <div class="seller-card-top">
+        <span class="seller-region">台南 · 中西區</span>
+        <span class="seller-badge">擅長自然系</span>
+      </div>
+      <div class="seller-name">野地小花</div>
+      <div class="seller-specialty">
+        台灣在地季節野花為主角，<br>
+        強調自然感與不刻意的美。
+      </div>
+      <div class="seller-tags">
+        <span class="seller-tag">野花</span>
+        <span class="seller-tag">乾燥花</span>
+        <span class="seller-tag">季節限定</span>
+      </div>
+      <a href="#" class="seller-link">前往查看 →</a>
     </div>
-    <button class="form-submit">送出預約申請</button>
-    <p class="form-note">或直接 LINE 諮詢 @floralseasons ｜ 急件可優先處理</p>
+
+    <div class="seller-card fade-up" style="transition-delay:.24s">
+      <style>.seller-card:nth-child(4)::before{background:var(--mist-lav)}</style>
+      <div class="seller-card-top">
+        <span class="seller-region">台北 · 信義區</span>
+        <span class="seller-badge">擅長韓式</span>
+      </div>
+      <div class="seller-name">Blossom Lab</div>
+      <div class="seller-specialty">
+        霧面色調搭配柔美包裝，<br>
+        鬱金香與桔梗的完美演繹。
+      </div>
+      <div class="seller-tags">
+        <span class="seller-tag">鬱金香</span>
+        <span class="seller-tag">桔梗</span>
+        <span class="seller-tag">陸蓮</span>
+      </div>
+      <a href="#" class="seller-link">前往查看 →</a>
+    </div>
+
+    <div class="seller-card fade-up" style="transition-delay:.32s">
+      <style>.seller-card:nth-child(5)::before{background:var(--mist-wheat)}</style>
+      <div class="seller-card-top">
+        <span class="seller-region">新北 · 永和</span>
+        <span class="seller-badge">擅長特殊場合</span>
+      </div>
+      <div class="seller-name">向日葵工作室</div>
+      <div class="seller-specialty">
+        畢業季、開幕、母親節的首選，<br>
+        向日葵大束設計享譽業界。
+      </div>
+      <div class="seller-tags">
+        <span class="seller-tag">向日葵</span>
+        <span class="seller-tag">康乃馨</span>
+        <span class="seller-tag">大束設計</span>
+      </div>
+      <a href="#" class="seller-link">前往查看 →</a>
+    </div>
+
+    <div class="seller-card fade-up" style="transition-delay:.40s">
+      <style>.seller-card:nth-child(6)::before{background:var(--warm-stone)}</style>
+      <div class="seller-card-top">
+        <span class="seller-region">高雄 · 左營</span>
+        <span class="seller-badge">擅長婚禮</span>
+      </div>
+      <div class="seller-name">茶花庭院</div>
+      <div class="seller-specialty">
+        婚禮捧花與桌花設計，<br>
+        低調優雅的東方美學風格。
+      </div>
+      <div class="seller-tags">
+        <span class="seller-tag">茶花</span>
+        <span class="seller-tag">水仙</span>
+        <span class="seller-tag">婚禮</span>
+      </div>
+      <a href="#" class="seller-link">前往查看 →</a>
+    </div>
+
   </div>
+
+  <p class="sellers-disclaimer">
+    以上為編輯精選推薦，非付費廣告。如欲推薦合適的花店，歡迎與我們聯繫。
+  </p>
 </section>
 
 <!-- ═══ FOOTER ═══ -->
@@ -913,31 +1028,31 @@ footer {
       <span class="logo-zh" style="color:var(--parchment);font-size:20px">歲月花跡</span>
       <span class="logo-en" style="color:var(--warm-stone)">Floral Seasons</span>
     </div>
-    <p class="footer-desc">透過花語、故事與專業諮詢，將花藝轉化為傳遞情感的橋樑。每一束花，都是一段值得被記住的故事。</p>
+    <p class="footer-desc">認識花的語言，找到最懂花的人。歲月花跡是一個花卉內容網站，介紹花語、花材故事，並精選推薦台灣優質花店。</p>
   </div>
   <div>
     <div class="footer-col-title">網站導覽</div>
     <div class="footer-links">
       <a href="#">首頁</a><a href="#">時令之詩</a>
-      <a href="#">花間辭典</a><a href="#">私人訂製</a><a href="#">會員中心</a>
+      <a href="#">花間辭典</a><a href="#">推薦花店</a>
     </div>
   </div>
   <div>
-    <div class="footer-col-title">聯絡方式</div>
+    <div class="footer-col-title">關於我們</div>
     <div class="footer-links">
-      <a href="#">LINE 即時諮詢</a><a href="#">Email 預約</a><a href="#">Instagram</a>
+      <a href="#">編輯理念</a><a href="#">合作洽詢</a><a href="#">Instagram</a>
     </div>
   </div>
   <div>
-    <div class="footer-col-title">服務須知</div>
+    <div class="footer-col-title">相關資訊</div>
     <div class="footer-links">
-      <a href="#">預約須知</a><a href="#">花材替換規則</a>
-      <a href="#">價格說明</a><a href="#">隱私政策</a>
+      <a href="#">花店推薦辦法</a><a href="#">免責聲明</a>
+      <a href="#">隱私政策</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-legal">© 2036 歲月花跡 Floral Seasons · 花卉為自然產物，實際設計依當季品質調整</span>
-    <span class="footer-legal">台灣 · 專人預約制花藝服務</span>
+    <span class="footer-legal">© 2036 歲月花跡 Floral Seasons · 本站為花卉內容媒體，不直接提供銷售服務</span>
+    <span class="footer-legal">台灣 · 花卉知識與推薦平台</span>
   </div>
 </footer>
 
