@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歲月花跡 Floral Seasons</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Sans+TC:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  /* ── base ── */
+  --cream:      #f5f0e8;
+  --parchment:  #ede6d6;
+  --warm-stone: #c8b89a;
+  --bark:       #8b7355;
+  --deep-bark:  #5c4a35;
+  --ink:        #2c2420;
+  --gold:       #b8975c;
+  --gold-light: #d4b077;
+  --rule:       rgba(139,115,85,0.18);
+
+  /* ── A×C mist palette ── */
+  --mist-blue:  #aec4cc;
+  --mist-lav:   #c0b2d4;
+  --mist-sage:  #a0b898;
+  --mist-wheat: #ceb870;
+  --mist-rose:  #c8a098;
+}
+
+*  { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* grain */
+body::before {
+  content:''; position:fixed; inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none; z-index:9999; opacity:.35;
+}
+
+/* ══════════════════════════════
+   HEADER
+══════════════════════════════ */
+header {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:20px 52px;
+  background:linear-gradient(to bottom,rgba(245,240,232,.97) 0%,rgba(245,240,232,0) 100%);
+  backdrop-filter:blur(2px);
+}
+.logo { display:flex; flex-direction:column; gap:2px; }
+.logo-zh {
+  font-family:'Noto Serif TC',serif;
+  font-size:18px; font-weight:500; letter-spacing:.15em; color:var(--deep-bark);
+}
+.logo-en {
+  font-family:'EB Garamond',serif; font-style:italic;
+  font-size:12px; letter-spacing:.3em; color:var(--bark);
+}
+nav { display:flex; gap:32px; align-items:center; }
+nav a {
+  font-family:'Noto Serif TC',serif;
+  font-size:13px; letter-spacing:.12em; color:var(--deep-bark);
+  text-decoration:none; position:relative; padding-bottom:3px; transition:color .3s;
+}
+nav a::after {
+  content:''; position:absolute; bottom:0; left:0;
+  width:0; height:1px; background:var(--gold); transition:width .35s ease;
+}
+nav a:hover { color:var(--gold); }
+nav a:hover::after { width:100%; }
+.nav-cta {
+  font-family:'Noto Serif TC',serif;
+  font-size:12px; letter-spacing:.15em;
+  color:var(--cream) !important; background:var(--deep-bark);
+  padding:8px 20px; transition:background .3s !important;
+}
+.nav-cta::after { display:none !important; }
+.nav-cta:hover { background:var(--bark) !important; }
+
+/* ══════════════════════════════
+   HERO  —  left text / right visual (asymm, V1 style)
+══════════════════════════════ */
+.hero {
+  min-height:100vh;
+  display:grid; grid-template-columns:1fr 1fr;
+  position:relative; overflow:hidden;
+}
+.hero-left {
+  display:flex; flex-direction:column; justify-content:flex-end;
+  padding:0 48px 88px 60px; position:relative; z-index:2;
+}
+/* stamp badge – C style */
+.hero-stamp {
+  display:inline-flex; align-items:center; gap:8px;
+  border:0.5px solid var(--mist-blue);
+  padding:5px 16px; margin-bottom:22px; width:fit-content;
+}
+.hero-stamp span {
+  font-family:'EB Garamond',serif; font-style:italic;
+  font-size:12px; letter-spacing:.28em; color:var(--mist-blue);
+}
+.hero-title {
+  font-family:'Noto Serif TC',serif;
+  font-size:clamp(40px,5vw,64px); font-weight:300; line-height:1.35;
+  letter-spacing:.08em; color:var(--ink); margin-bottom:24px;
+}
+.hero-title strong { font-weight:500; color:var(--gold); }
+.hero-title em {
+  font-style:italic; font-family:'EB Garamond',serif;
+  font-size:.68em; color:var(--bark);
+  display:block; letter-spacing:.12em; margin-top:6px;
+}
+.hero-desc {
+  font-family:'Noto Serif TC',serif; font-weight:300;
+  font-size:14px; line-height:2.1; color:var(--bark);
+  max-width:360px; margin-bottom:44px;
+}
+.hero-actions { display:flex; gap:14px; align-items:center; }
+.btn-primary {
+  font-family:'Noto Serif TC',serif; font-size:13px; letter-spacing:.18em;
+  color:var(--cream); background:var(--deep-bark);
+  border:none; padding:13px 30px; cursor:pointer;
+  transition:all .3s; text-decoration:none; display:inline-block;
+}
+.btn-primary:hover { background:var(--bark); transform:translateY(-1px); }
+.btn-ghost {
+  font-family:'Noto Serif TC',serif; font-size:13px; letter-spacing:.15em;
+  color:var(--deep-bark); background:none; border:1px solid var(--warm-stone);
+  padding:12px 26px; cursor:pointer; transition:all .3s;
+  text-decoration:none; display:inline-block;
+}
+.btn-ghost:hover { border-color:var(--deep-bark); }
+
+/* right panel */
+.hero-right {
+  position:relative; overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+  padding-top:80px;
+}
+/* ── Hero single image ── */
+.swatch-cluster {
+  width:78%; max-width:440px;
+  position:relative; overflow:hidden;
+}
+.swatch-cluster img {
+  width:100%; height:100%;
+  object-fit:cover; display:block;
+  animation:floatGently 6s ease-in-out infinite;
+}
+/* placeholder shown when image is missing */
+.swatch-cluster .swatch-placeholder {
+  width:100%; aspect-ratio:4/5;
+  background:var(--parchment);
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:10px;
+}
+.swatch-cluster .swatch-placeholder svg { opacity:.3; }
+.swatch-cluster .swatch-placeholder span {
+  font-family:'EB Garamond',serif; font-style:italic;
+  font-size:12px; letter-spacing:.22em; color:var(--bark); opacity:.55;
+}
+
+/* month badge (rotating) */
+.month-badge {
+  position:absolute; top:130px; right:44px;
+  width:96px; height:96px; border-radius:50%;
+  border:0.5px solid var(--warm-stone);
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(245,240,232,.88); backdrop-filter:blur(4px);
+  animation:spinBadge 20s linear infinite;
+}
+.month-badge-inner {
+  display:flex; flex-direction:column; align-items:center; gap:3px;
+  animation:spinBadge 20s linear reverse infinite;
+}
+.month-num {
+  font-family:'EB Garamond',serif; font-size:30px; line-height:1; color:var(--deep-bark);
+}
+.month-lbl {
+  font-family:'Noto Serif TC',serif; font-size:10px; letter-spacing:.2em; color:var(--bark);
+}
+@keyframes spinBadge { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+
+/* floral illustration */
+.hero-floral {
+  width:78%; max-width:420px;
+  animation:floatGently 6s ease-in-out infinite;
+}
+@keyframes floatGently { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+/* ══════════════════════════════
+   SMART DATE + REMINDER STRIP
+══════════════════════════════ */
+.section-reminder {
+  background:var(--parchment);
+  border-top:0.5px solid var(--rule);
+  border-bottom:0.5px solid var(--rule);
+}
+
+/* date row */
+.reminder-date-row {
+  display:flex; align-items:center; gap:0;
+  border-bottom:0.5px solid var(--rule);
+}
+.date-block {
+  padding:20px 36px 18px 52px;
+  display:flex; align-items:baseline; gap:16px;
+  border-right:0.5px solid var(--rule);
+}
+.date-label {
+  font-family:'EB Garamond',serif; font-style:italic;
+  font-size:12px; letter-spacing:.28em; color:var(--gold);
+}
+.date-main {
+  font-family:'Noto Serif TC',serif; font-size:22px; font-weight:400;
+  letter-spacing:.1em; color:var(--ink);
+}
+.date-jieqi {
+  font-family:'Noto Serif TC',serif; font-size:13px;
+  letter-spacing:.12em; color:var(--bark); padding-left:8px;
+}
+.date-day-en {
+  font-family:'EB Garamond',serif; font-style:italic;
+  font-size:13px; letter-spacing:.2em; color:var(--warm-stone);
+}
+
+/* reminder items */
+.reminder-items {
+  display:grid; grid-template-columns:1fr 1fr;
+}
+.reminder-item {
+  padding:22px 36px 22px 52px;
+  border-right:0.5px solid var(--rule);
+}
+.reminder-item:last-child { border-right:none; }
+.r-eyebrow {
+  font-family:'EB Garamond',serif; font-style:italic;
+  font-size:12px; letter-spacing:.26em; color:var(--gold); margin-bottom:5px;
+}
+.r-main {
+  font-family:'Noto Serif TC',serif; font-size:15px;
+  letter-spacing:.1em; color:var(--ink); margin-bottom:4px;
+}
+.r-sub {
+  font-family:'Noto Sans TC',sans-serif; font-weight:300;
+  font-size:12px; color:var(--bark); letter-spacing:.07em;
+}
+/* countdown pill */
+.r-count {
+  display:inline-flex; align-items:center; gap:6px; margin-top:8px;
+  border:0.5px solid var(--warm-stone); padding:4px 12px;
+}
+.r-count-num {
+  font-family:'EB Garamond',serif; font-size:20px; color:var(--deep-bark); line-height:1;
+}
+.r-count-lbl {
+  font-family:'Noto Serif TC',serif; font-size:11px; letter-spacing:.12em; color:var(--bark);
+}
+
+/* ══════════════════════════════
+   FOUR SEASONS CALENDAR
+   (directly below reminder strip)
+══════════════════════════════ */
+.section-calendar {
+  background:var(--cream);
+  border-bottom:0.5px solid var(--rule);
+}
+
+/* header row of the calendar section */
+.cal-header {
+  padding:48px 52px 32px;
+  display:flex; justify-content:space-between; align-items:flex-end;
+  border-bottom:0.5px solid var(--rule);
+}
+.section-label {
+  font-family:'EB Garamond',serif; font-style:italic;
+  font-size:14px; letter-spacing:.22em; color:var(--gold); margin-bottom:10px;
+}
+.section-title {
+  font-family:'Noto Serif TC',serif;
+  font-size:clamp(24px,3vw,36px); font-weight:300;
+  line-height:1.4; letter-spacing:.08em; color:var(--ink);
+}
+
+/* season columns */
+.cal-grid {
+  display:grid; grid-template-columns:repeat(4,1fr);
+  gap:0;
+}
+.cal-col {
+  padding:36px 36px 36px 52px;
+  border-right:0.5px solid var(--rule);
+  position:relative; overflow:hidden;
+  transition:background .35s;
+  cursor:pointer;
+}
+.cal-col:last-child { border-right:none; }
+.cal-col::before {
+  content:''; position:absolute; inset:0; opacity:0; transition:opacity .35s;
+}
+.cal-col.spring::before { background:rgba(200,160,152,.07); }
+.cal-col.summer::before { background:rgba(160,184,152,.07); }
+.cal-col.autumn::before { background:rgba(206,184,112,.07); }
+.cal-col.winter::before { background:rgba(192,178,212,.07); }
+.cal-col:hover::before { opacity:1; }
+
+/* active marker (current season) */
+.cal-col.active {
+  background:var(--parchment);
+}
+.cal-col.active .cal-season-num { color:var(--deep-bark); }
+.active-dot {
+  position:absolute; top:24px; right:24px;
+  width:7px; height:7px; border-radius:50%; background:var(--gold);
+}
+
+.cal-season-num {
+  font-family:'EB Garamond',serif; font-size:56px; line-height:1;
+  color:var(--warm-stone); margin-bottom:12px; display:block;
+  transition:color .35s;
+}
+.cal-season-zh {
+  font-family:'Noto Serif TC',serif; font-size:18px; letter-spacing:.15em;
+  color:var(--ink); margin-bottom:4px;
+}
+.cal-season-en {
+  font-family:'EB Garamond',serif; font-style:italic;
+  font-size:13px; color:var(--bark); letter-spacing:.1em; margin-bottom:6px;
+}
+.cal-months {
+  font-size:11px; letter-spacing:.18em; color:var(--warm-stone); margin-bottom:22px;
+}
+
+/* mist-palette color bar per season */
+.cal-color-bar {
+  width:100%; height:3px; border-radius:2px; margin-bottom:22px;
+}
+
+.cal-flowers { display:flex; flex-direction:column; gap:9px; }
+.cal-flower-row {
+  display:flex; align-items:center; gap:10px;
+  font-family:'Noto Serif TC',serif; font-size:13px;
+  color:var(--deep-bark); letter-spacing:.08em;
+}
+.cal-dot {
+  width:7px; height:7px; border-radius:50%; flex-shrink:0;
+}
+
+/* ══════════════════════════════
+   MONTHLY FEATURE
+══════════════════════════════ */
+.section-monthly {
+  padding:88px 52px;
+  display:grid; grid-template-columns:1fr 0.5px 1fr;
+  gap:0; background:var(--parchment);
+  position:relative; overflow:hidden;
+}
+.section-monthly::before {
+  content:'May'; position:absolute;
+  font-family:'EB Garamond',serif; font-size:180px; font-weight:400;
+  color:rgba(139,115,85,.055); right:-10px; top:50%; transform:translateY(-50%);
+  pointer-events:none; white-space:nowrap;
+}
+.monthly-divider { background:var(--rule); }
+.monthly-text { padding-right:60px; }
+.monthly-visual { padding-left:60px; }
+
+.flower-tag {
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--mist-blue); color:rgba(255,255,255,.92);
+  padding:5px 16px; font-size:11px; font-family:'Noto Serif TC',serif;
+  letter-spacing:.15em; margin-bottom:24px;
+}
+.monthly-body {
+  font-family:'Noto Serif TC',serif; font-weight:300;
+  font-size:15px; line-height:2.3; color:var(--bark); margin-bottom:28px;
+}
+.pairing-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:36px; }
+.pair-tag {
+  font-family:'Noto Sans TC',sans-serif; font-weight:300;
+  font-size:12px; letter-spacing:.1em; color:var(--deep-bark);
+  background:rgba(200,184,154,.2); border:1px solid var(--warm-stone);
+  padding:5px 14px;
+}
+/* monthly image frame */
+.monthly-img-frame {
+  width:100%; aspect-ratio:4/5; background:var(--warm-stone);
+  position:relative; overflow:hidden;
+}
+.monthly-img-frame svg { width:100%; height:100%; }
+.monthly-caption {
+  position:absolute; bottom:0; left:0; right:0; padding:20px 22px;
+  background:linear-gradient(to top,rgba(44,36,32,.78),transparent);
+  color:var(--cream); font-family:'Noto Serif TC',serif; font-size:12px;
+  letter-spacing:.15em;
+}
+.monthly-caption-sub {
+  font-size:11px; color:rgba(245,240,232,.55); margin-top:4px; letter-spacing:.1em;
+}
+
+/* ══════════════════════════════
+   QUOTE
+══════════════════════════════ */
+.section-quote {
+  padding:110px 52px; text-align:center; background:var(--cream);
+  position:relative;
+}
+.section-quote::before,.section-quote::after {
+  content:''; position:absolute; left:50%; transform:translateX(-50%);
+  width:1px; background:var(--warm-stone);
+}
+.section-quote::before { top:0; height:55px; }
+.section-quote::after  { bottom:0; height:55px; }
+.quote-text {
+  font-family:'Noto Serif TC',serif; font-weight:300;
+  font-size:clamp(17px,2.4vw,26px); line-height:2.3;
+  letter-spacing:.12em; color:var(--deep-bark);
+  max-width:640px; margin:0 auto 28px;
+}
+.quote-source {
+  font-family:'EB Garamond',serif; font-style:italic;
+  font-size:14px; letter-spacing:.2em; color:var(--gold);
+}
+
+/* ══════════════════════════════
+   RECIPIENT
+══════════════════════════════ */
+.section-recipient {
+  padding:88px 52px; background:var(--parchment);
+  border-top:0.5px solid var(--rule);
+}
+.recip-grid {
+  display:grid; grid-template-columns:repeat(5,1fr); gap:2px; margin-top:52px;
+}
+.recip-card {
+  padding:36px 24px; background:var(--cream);
+  border:0.5px solid var(--rule); cursor:pointer; transition:all .35s;
+}
+.recip-card:hover { border-color:var(--warm-stone); transform:translateY(-3px); }
+.recip-bar { height:2.5px; border-radius:1px; margin-bottom:16px; }
+.recip-title {
+  font-family:'Noto Serif TC',serif; font-size:16px;
+  letter-spacing:.15em; color:var(--ink); margin-bottom:8px;
+}
+.recip-sub {
+  font-family:'Noto Serif TC',serif; font-weight:300;
+  font-size:12px; line-height:1.9; color:var(--bark); letter-spacing:.07em;
+}
+
+/* ══════════════════════════════
+   CTA / BOOKING
+══════════════════════════════ */
+.section-cta {
+  padding:88px 52px; background:var(--deep-bark);
+  display:grid; grid-template-columns:1fr 0.5px 1fr; gap:0;
+  position:relative; overflow:hidden;
+}
+.section-cta::before {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse at 70% 50%,rgba(184,151,92,.1) 0%,transparent 60%);
+  pointer-events:none;
+}
+.cta-divider { background:rgba(255,255,255,.08); }
+.cta-text { padding-right:60px; position:relative; }
+.cta-text .section-label { color:var(--gold-light); }
+.cta-text .section-title { color:var(--cream); }
+.cta-body {
+  font-family:'Noto Serif TC',serif; font-weight:300;
+  font-size:14px; line-height:2.2; color:rgba(245,240,232,.7); margin-top:18px;
+}
+.cta-form { padding-left:60px; display:flex; flex-direction:column; gap:12px; position:relative; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.form-field { display:flex; flex-direction:column; gap:6px; }
+.form-label {
+  font-family:'Noto Serif TC',serif; font-size:12px;
+  letter-spacing:.15em; color:rgba(245,240,232,.6);
+}
+.form-input, .form-select {
+  background:rgba(255,255,255,.1); border:0.5px solid rgba(255,255,255,.18);
+  color:var(--cream); padding:11px 14px;
+  font-family:'Noto Serif TC',serif; font-size:13px;
+  letter-spacing:.08em; outline:none; transition:border-color .3s;
+  -webkit-appearance:none;
+}
+.form-input::placeholder { color:rgba(245,240,232,.3); }
+.form-input:focus,.form-select:focus { border-color:rgba(255,255,255,.4); }
+.form-select option { background:var(--deep-bark); }
+.form-textarea { resize:none; }
+.form-submit {
+  margin-top:6px; padding:14px; background:var(--cream); color:var(--deep-bark);
+  border:none; cursor:pointer; font-family:'Noto Serif TC',serif;
+  font-size:13px; letter-spacing:.2em; transition:all .3s;
+}
+.form-submit:hover { background:var(--parchment); transform:translateY(-1px); }
+.form-note {
+  font-size:11px; letter-spacing:.1em; color:rgba(245,240,232,.4);
+  font-family:'Noto Sans TC',sans-serif; font-weight:300; text-align:center;
+}
+
+/* ══════════════════════════════
+   FOOTER
+══════════════════════════════ */
+footer {
+  padding:52px; background:var(--ink);
+  display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:52px;
+}
+.footer-desc {
+  font-family:'Noto Serif TC',serif; font-weight:300;
+  font-size:12px; line-height:2.2; color:rgba(237,230,214,.4);
+  margin-top:18px; max-width:250px;
+}
+.footer-col-title {
+  font-family:'Noto Serif TC',serif; font-size:12px;
+  letter-spacing:.2em; color:var(--warm-stone); margin-bottom:18px;
+}
+.footer-links { display:flex; flex-direction:column; gap:12px; }
+.footer-links a {
+  font-family:'Noto Serif TC',serif; font-weight:300;
+  font-size:13px; color:rgba(237,230,214,.45); text-decoration:none;
+  letter-spacing:.1em; transition:color .3s;
+}
+.footer-links a:hover { color:var(--parchment); }
+.footer-bottom {
+  grid-column:1/-1; padding-top:36px;
+  border-top:0.5px solid rgba(255,255,255,.06);
+  display:flex; justify-content:space-between; align-items:center;
+}
+.footer-legal {
+  font-size:11px; letter-spacing:.1em; color:rgba(237,230,214,.22);
+  font-family:'Noto Sans TC',sans-serif; font-weight:300;
+}
+
+/* ── fade-up ── */
+.fade-up { opacity:0; transform:translateY(28px); transition:opacity .8s ease,transform .8s ease; }
+.fade-up.visible { opacity:1; transform:translateY(0); }
+
+/* ── scroll indicator ── */
+.scroll-hint {
+  position:fixed; bottom:38px; right:40px; z-index:50;
+  writing-mode:vertical-rl; font-family:'EB Garamond',serif; font-style:italic;
+  font-size:11px; letter-spacing:.28em; color:var(--bark); opacity:.55;
+  display:flex; align-items:center; gap:10px; transition:opacity .4s;
+}
+.scroll-hint::after {
+  content:''; display:block; width:1px; height:52px;
+  background:linear-gradient(to bottom,var(--bark),transparent);
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header>
+  <div class="logo">
+    <span class="logo-zh">歲月花跡</span>
+    <span class="logo-en">Floral Seasons</span>
+  </div>
+  <nav>
+    <a href="#">時令之詩</a>
+    <a href="#">花間辭典</a>
+    <a href="#">12月花曆</a>
+    <a href="#">會員中心</a>
+    <a href="#booking" class="nav-cta">私人訂製</a>
+  </nav>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-stamp fade-up"><span>May · 五月 · 小滿</span></div>
+    <h1 class="hero-title fade-up">
+      每一束花<br>都是<strong>未說出口</strong>的話
+      <em>Every bloom, a silent language</em>
+    </h1>
+    <p class="hero-desc fade-up">
+      透過花語、故事與專業諮詢，<br>
+      將花藝轉化為傳遞情感的橋樑。<br>
+      專人預約制，只為您留存最高質感的每一刻。
+    </p>
+    <div class="hero-actions fade-up">
+      <a href="#monthly" class="btn-primary">探索本月花材</a>
+      <a href="#booking" class="btn-ghost">了解訂製服務</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="month-badge">
+      <div class="month-badge-inner">
+        <span class="month-num">05</span>
+        <span class="month-lbl">五月</span>
+      </div>
+    </div>
+
+    <!-- 首頁主視覺圖片 — 換圖只需替換 swatches-01.png -->
+    <div class="swatch-cluster fade-up">
+      <img
+        src="assets/images/homepage/swatches/swatches-01.png"
+        alt="歲月花跡 · 本月花材"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+      >
+      <div class="swatch-placeholder" style="display:none">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <rect x="3" y="3" width="30" height="30" rx="3" stroke="#8b7355" stroke-width="1.4"/>
+          <circle cx="12" cy="13" r="3.5" stroke="#8b7355" stroke-width="1.4"/>
+          <path d="M3 25 L11 17 L18 24 L23 19 L33 28" stroke="#8b7355" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>swatches-01.png</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SMART DATE + REMINDER ═══ -->
+<div class="section-reminder">
+
+  <!-- date row -->
+  <div class="reminder-date-row">
+    <div class="date-block fade-up">
+      <span class="date-label">今日</span>
+      <span class="date-main">2036 / 05 / 20</span>
+      <span class="date-jieqi">小滿</span>
+      <span class="date-day-en">Tuesday</span>
+    </div>
+    <!-- flower of the day teaser -->
+    <div style="padding:20px 36px 18px; flex:1; display:flex; align-items:baseline; gap:12px;">
+      <span style="font-family:'EB Garamond',serif;font-style:italic;font-size:12px;letter-spacing:.26em;color:var(--gold)">本月主角</span>
+      <span style="font-family:'Noto Serif TC',serif;font-size:16px;letter-spacing:.12em;color:var(--ink)">康乃馨</span>
+      <span style="font-family:'Noto Serif TC',serif;font-size:13px;color:var(--bark);letter-spacing:.08em">層疊的花瓣，如同母親細碎卻綿長的叮嚀</span>
+    </div>
+  </div>
+
+  <!-- two reminder items -->
+  <div class="reminder-items">
+    <div class="reminder-item fade-up">
+      <div class="r-eyebrow">近期節日</div>
+      <div class="r-main">母親節 · 5 月 18 日已過</div>
+      <div class="r-sub">感謝您的用心陪伴，下一個重要日子是端午節</div>
+      <div class="r-count">
+        <span class="r-count-num">20</span>
+        <span class="r-count-lbl">天後 · 端午節</span>
+      </div>
+    </div>
+    <div class="reminder-item fade-up" style="transition-delay:.1s">
+      <div class="r-eyebrow">花藝小語</div>
+      <div class="r-main">小滿節氣到了</div>
+      <div class="r-sub">萬物至此小得盈滿，康乃馨正值盛產，是送給重要之人的時節</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FOUR SEASONS CALENDAR（緊接 reminder 下方）═══ -->
+<section class="section-calendar" id="seasons">
+  <div class="cal-header fade-up">
+    <div>
+      <p class="section-label">時令之詩 · Seasonal Calendar</p>
+      <h2 class="section-title">四季花材 · 今正盛開</h2>
+    </div>
+    <a href="#" class="btn-ghost" style="font-size:12px;padding:10px 22px;">瀏覽完整花材庫</a>
+  </div>
+
+  <div class="cal-grid">
+    <!-- 春 Spring -->
+    <div class="cal-col spring fade-up" style="transition-delay:.0s">
+      <div class="cal-season-num">春</div>
+      <div class="cal-season-zh">Spring</div>
+      <div class="cal-season-en">March — May</div>
+      <div class="cal-months">3 月 · 4 月 · 5 月</div>
+      <div class="cal-color-bar" style="background:linear-gradient(to right,#c8a098,#aec4cc,#c0b2d4)"></div>
+      <div class="cal-flowers">
+        <div class="cal-flower-row"><span class="cal-dot" style="background:#c8a098"></span>海芋 · 櫻花</div>
+        <div class="cal-flower-row"><span class="cal-dot" style="background:#aec4cc"></span>鬱金香 · 陸蓮花</div>
+        <div class="cal-flower-row"><span class="cal-dot" style="background:#c0b2d4"></span>洋桔梗 · 大理花</div>
+        <div class="cal-flower-row"><span class="cal-dot" style="background:#ceb870"></span>康乃馨 · 芍藥</div>
+      </div>
+    </div>
+
+    <!-- 夏 Summer -->
+    <div class="cal-col summer active fade-up" style="transition-delay:.08s">
+      <span class="active-dot"></span>
+      <div class="cal-season-num">夏</div>
+      <div class="cal-season-zh">Summer</div>
+      <div class="cal-season-en">June — August</div>
+      <div class="cal-months">6 月 · 7 月 · 8 月</div>
+      <div class="cal-color-bar" style="background:linear-gradient(to right,#a0b898,#ceb870,#aec4cc)"></div>
+      <div class="cal-flowers">
+        <div class="cal-flower-row"><span class="cal-dot" style="background:#ceb870"></span>向日葵 · 茉莉</div>
+        <div class="cal-flower-row"><span class="cal-dot" style="background:#aec4cc"></span>繡球花 · 荷花</div>
+        <div class="cal-flower-row"><span class="cal-dot" style="background:#a0b898"></span>火鶴 · 睡蓮</div>
+        <div class="cal-flower-row"><span class="cal-dot" style="background:#c8a098"></span>千日紅 · 雞冠花</div>
+      </div>
+    </div>
+
+    <!-- 秋 Autumn -->
+    <div class="cal-col autumn fade-up" style="transition-delay:.16s">
+      <div class="cal-season-num">秋</div>
+      <div class="cal-season-zh">Autumn</div>
+      <div class="cal-season-en">September — November</div>
+      <div class="cal-months">9 月 · 10 月 · 11 月</div>
+      <div class="cal-color-bar" style="background:linear-gradient(to right,#ceb870,#c8a098,#a0b898)"></div>
+      <div class="cal-flowers">
+        <div class="cal-flower-row"><span class="cal-dot" style="background:#ceb870"></span>文心蘭 · 桂花</div>
+        <div class="cal-flower-row"><span class="cal-dot" style="background:#c8a098"></span>萬壽菊 · 大波斯菊</div>
+        <div class="cal-flower-row"><span class="cal-dot" style="background:#a0b898"></span>秋石斛蘭</div>
+        <div class="cal-flower-row"><span class="cal-dot" style="background:#aec4cc"></span>大理花 · 洋桔梗</div>
+      </div>
+    </div>
+
+    <!-- 冬 Winter -->
+    <div class="cal-col winter fade-up" style="transition-delay:.24s">
+      <div class="cal-season-num">冬</div>
+      <div class="cal-season-zh">Winter</div>
+      <div class="cal-season-en">December — February</div>
+      <div class="cal-months">12 月 · 1 月 · 2 月</div>
+      <div class="cal-color-bar" style="background:linear-gradient(to right,#c0b2d4,#aec4cc,#ceb870)"></div>
+      <div class="cal-flowers">
+        <div class="cal-flower-row"><span class="cal-dot" style="background:#c0b2d4"></span>水仙 · 梅花</div>
+        <div class="cal-flower-row"><span class="cal-dot" style="background:#aec4cc"></span>茶花 · 玫瑰</div>
+        <div class="cal-flower-row"><span class="cal-dot" style="background:#ceb870"></span>聖誕紅 · 諾貝松</div>
+        <div class="cal-flower-row"><span class="cal-dot" style="background:#c8a098"></span>風信子 · 棉花</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MONTHLY FEATURE ═══ -->
+<section class="section-monthly" id="monthly">
+  <div class="monthly-text fade-up">
+    <p class="section-label">五月主角 · Monthly Feature</p>
+    <h2 class="section-title">康乃馨<br>母愛的重量</h2>
+    <span class="flower-tag">✦ 花語：母愛</span>
+    <p class="monthly-body">
+      層疊的花瓣，如同母親細碎卻綿長的叮嚀。<br>
+      每一片花瓣都是一句未說完的話——<br>
+      「你吃了嗎」「天冷了加件衣服」「路上小心」。<br>
+      康乃馨以它的豐盛，承載了世界上最溫柔的情感。
+    </p>
+    <div class="pairing-row">
+      <span class="pair-tag">康乃馨</span>
+      <span class="pair-tag">芍藥</span>
+      <span class="pair-tag">桔梗</span>
+      <span class="pair-tag">圓葉尤加利</span>
+    </div>
+    <a href="#booking" class="btn-primary">查看完整搭配方案</a>
+  </div>
+  <div class="monthly-divider"></div>
+  <div class="monthly-visual fade-up" style="transition-delay:.2s">
+    <div class="monthly-img-frame">
+      <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="500" fill="#ede6d6"/>
+        <ellipse cx="200" cy="280" rx="175" ry="155" fill="rgba(174,196,204,.14)"/>
+        <ellipse cx="215" cy="220" rx="115" ry="95" fill="rgba(200,160,152,.1)"/>
+        <!-- Stem -->
+        <path d="M200 460 Q198 415 196 372 Q194 330 198 290 Q202 250 204 215 Q206 188 204 168" stroke="#90a070" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <!-- leaf L -->
+        <path d="M196 355 Q162 330 145 312 Q135 298 145 290 Q154 283 168 295 Q184 314 192 344 Z" stroke="#98ae80" stroke-width="1.8" fill="rgba(160,184,152,.28)"/>
+        <!-- leaf R -->
+        <path d="M202 325 Q238 300 256 288 Q268 278 265 268 Q260 262 248 270 Q232 285 210 318 Z" stroke="#98ae80" stroke-width="1.8" fill="rgba(160,184,152,.28)"/>
+        <!-- Carnation main – layered petal illusion -->
+        <!-- base circle -->
+        <circle cx="200" cy="158" r="52" fill="#f0e0d8" stroke="#c8a098" stroke-width="1.5"/>
+        <!-- petal ring 1 -->
+        <path d="M200 108 Q225 95 238 110 Q248 125 235 138 Q220 148 200 145 Z" fill="#e8c8be" stroke="#c8a098" stroke-width="1.2"/>
+        <path d="M200 108 Q175 95 162 110 Q152 125 165 138 Q180 148 200 145 Z" fill="#e8c8be" stroke="#c8a098" stroke-width="1.2"/>
+        <path d="M248 140 Q265 120 258 105 Q245 94 230 105 Q215 118 218 140 Z" fill="#e0b8b0" stroke="#c8a098" stroke-width="1.2"/>
+        <path d="M152 140 Q135 120 142 105 Q155 94 170 105 Q185 118 182 140 Z" fill="#e0b8b0" stroke="#c8a098" stroke-width="1.2"/>
+        <!-- petal ring 2 -->
+        <path d="M200 165 Q228 152 240 168 Q248 185 230 195 Q215 200 200 196 Z" fill="#eac8c0" stroke="#c8a098" stroke-width="1.2"/>
+        <path d="M200 165 Q172 152 160 168 Q152 185 170 195 Q185 200 200 196 Z" fill="#eac8c0" stroke="#c8a098" stroke-width="1.2"/>
+        <path d="M245 158 Q265 162 268 178 Q268 196 252 200 Q236 200 232 185 Z" fill="#deb0a8" stroke="#c8a098" stroke-width="1.2"/>
+        <path d="M155 158 Q135 162 132 178 Q132 196 148 200 Q164 200 168 185 Z" fill="#deb0a8" stroke="#c8a098" stroke-width="1.2"/>
+        <!-- center -->
+        <circle cx="200" cy="158" r="22" fill="#f5e0d5" stroke="#c8a098" stroke-width="1"/>
+        <circle cx="200" cy="158" r="10" fill="#e8c0b0" stroke="#c8a098" stroke-width="1"/>
+        <!-- filler flowers -->
+        <circle cx="148" cy="120" r="5" fill="rgba(192,178,212,.85)" stroke="#c0b2d4" stroke-width="1.2"/>
+        <circle cx="140" cy="112" r="3.5" fill="rgba(192,178,212,.7)" stroke="#c0b2d4" stroke-width="1"/>
+        <circle cx="155" cy="110" r="4" fill="rgba(192,178,212,.75)" stroke="#c0b2d4" stroke-width="1"/>
+        <circle cx="253" cy="118" r="5" fill="rgba(192,178,212,.85)" stroke="#c0b2d4" stroke-width="1.2"/>
+        <circle cx="261" cy="110" r="3.5" fill="rgba(192,178,212,.7)" stroke="#c0b2d4" stroke-width="1"/>
+        <circle cx="247" cy="108" r="4" fill="rgba(192,178,212,.75)" stroke="#c0b2d4" stroke-width="1"/>
+        <!-- caption -->
+        <rect x="0" y="428" width="400" height="72" fill="rgba(44,36,32,.68)"/>
+        <text x="22" y="455" font-family="serif" font-size="15" fill="rgba(245,240,232,.92)" letter-spacing="3">康乃馨 · Carnation</text>
+        <text x="22" y="477" font-family="serif" font-size="11" fill="rgba(245,240,232,.48)" letter-spacing="2">花語：母愛 ｜ 五月盛產</text>
+      </svg>
+      <div class="monthly-caption">
+        <div>五月主角 · 2036</div>
+        <div class="monthly-caption-sub">花材依當季品質調整，照片僅供風格參考</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ QUOTE ═══ -->
+<section class="section-quote">
+  <p class="quote-text fade-up">
+    「 送一束花，<br>不只是給花，<br>而是給那個人看見你記得她的樣子 」
+  </p>
+  <span class="quote-source fade-up">— 歲月花跡 品牌理念</span>
+</section>
+
+<!-- ═══ RECIPIENT ═══ -->
+<section class="section-recipient">
+  <div class="fade-up">
+    <p class="section-label">贈送對象 · For Someone Special</p>
+    <h2 class="section-title">選對花，傳遞最真實的心意</h2>
+  </div>
+  <div class="recip-grid">
+    <div class="recip-card fade-up">
+      <div class="recip-bar" style="background:var(--mist-rose)"></div>
+      <div class="recip-title">致 摯愛</div>
+      <div class="recip-sub">浪漫、熱烈<br>唯一的承諾</div>
+    </div>
+    <div class="recip-card fade-up" style="transition-delay:.07s">
+      <div class="recip-bar" style="background:var(--mist-lav)"></div>
+      <div class="recip-title">致 長輩</div>
+      <div class="recip-sub">穩重、健康<br>歲月的敬意</div>
+    </div>
+    <div class="recip-card fade-up" style="transition-delay:.14s">
+      <div class="recip-bar" style="background:var(--mist-blue)"></div>
+      <div class="recip-title">致 摯友</div>
+      <div class="recip-sub">活潑、並肩<br>生活中的小確幸</div>
+    </div>
+    <div class="recip-card fade-up" style="transition-delay:.21s">
+      <div class="recip-bar" style="background:var(--mist-wheat)"></div>
+      <div class="recip-title">致 商務</div>
+      <div class="recip-sub">大氣、繁盛<br>祝禱事業長青</div>
+    </div>
+    <div class="recip-card fade-up" style="transition-delay:.28s">
+      <div class="recip-bar" style="background:var(--mist-sage)"></div>
+      <div class="recip-title">致 自己</div>
+      <div class="recip-sub">儀式感、舒壓<br>與心靈的對話</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA / BOOKING ═══ -->
+<section class="section-cta" id="booking">
+  <div class="cta-text fade-up">
+    <p class="section-label">私人訂製 · Custom Order</p>
+    <h2 class="section-title">每一束花<br>都值得被認真對待</h2>
+    <p class="cta-body">
+      我們採專人預約制，確保每位顧客都能獲得最細緻的花藝諮詢。<br><br>
+      告訴我們您的需求——贈送對象、喜愛色系、重要日期——<br>
+      花藝師將為您量身打造獨一無二的花語故事。<br><br>
+      <strong style="color:rgba(245,240,232,.9);letter-spacing:.1em">建議提前 3–5 天預約 ｜ NT$ 2,000 起</strong>
+    </p>
+  </div>
+  <div class="cta-divider"></div>
+  <div class="cta-form fade-up" style="transition-delay:.15s">
+    <div class="form-row">
+      <div class="form-field">
+        <label class="form-label">您的姓名</label>
+        <input class="form-input" type="text" placeholder="王小明">
+      </div>
+      <div class="form-field">
+        <label class="form-label">希望取貨日期</label>
+        <input class="form-input" type="text" placeholder="2036 / 06 / 08">
+      </div>
+    </div>
+    <div class="form-field">
+      <label class="form-label">贈送對象</label>
+      <select class="form-select">
+        <option value="">請選擇贈送對象</option>
+        <option>致 摯愛</option><option>致 長輩</option>
+        <option>致 摯友</option><option>致 商務</option><option>致 自己</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <div class="form-field">
+        <label class="form-label">偏好色系</label>
+        <select class="form-select">
+          <option value="">色系偏好</option>
+          <option>暖色系（紅／粉／橘）</option>
+          <option>冷色系（白／藍／紫）</option>
+          <option>大地色系</option>
+          <option>交由花藝師決定</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label class="form-label">預算區間</label>
+        <select class="form-select">
+          <option value="">預算區間</option>
+          <option>NT$ 2,000–3,000</option>
+          <option>NT$ 3,000–5,000</option>
+          <option>NT$ 5,000 以上</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-field">
+      <label class="form-label">補充需求（選填）</label>
+      <textarea class="form-input form-textarea" rows="3" placeholder="場合、特殊花材需求、包裝偏好⋯⋯"></textarea>
+    </div>
+    <button class="form-submit">送出預約申請</button>
+    <p class="form-note">或直接 LINE 諮詢 @floralseasons ｜ 急件可優先處理</p>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div>
+    <div class="logo">
+      <span class="logo-zh" style="color:var(--parchment);font-size:20px">歲月花跡</span>
+      <span class="logo-en" style="color:var(--warm-stone)">Floral Seasons</span>
+    </div>
+    <p class="footer-desc">透過花語、故事與專業諮詢，將花藝轉化為傳遞情感的橋樑。每一束花，都是一段值得被記住的故事。</p>
+  </div>
+  <div>
+    <div class="footer-col-title">網站導覽</div>
+    <div class="footer-links">
+      <a href="#">首頁</a><a href="#">時令之詩</a>
+      <a href="#">花間辭典</a><a href="#">私人訂製</a><a href="#">會員中心</a>
+    </div>
+  </div>
+  <div>
+    <div class="footer-col-title">聯絡方式</div>
+    <div class="footer-links">
+      <a href="#">LINE 即時諮詢</a><a href="#">Email 預約</a><a href="#">Instagram</a>
+    </div>
+  </div>
+  <div>
+    <div class="footer-col-title">服務須知</div>
+    <div class="footer-links">
+      <a href="#">預約須知</a><a href="#">花材替換規則</a>
+      <a href="#">價格說明</a><a href="#">隱私政策</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-legal">© 2036 歲月花跡 Floral Seasons · 花卉為自然產物，實際設計依當季品質調整</span>
+    <span class="footer-legal">台灣 · 專人預約制花藝服務</span>
+  </div>
+</footer>
+
+<div class="scroll-hint" id="scrollHint">scroll</div>
+
+<script>
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  fadeEls.forEach(el => observer.observe(el));
+
+  window.addEventListener('scroll', () => {
+    const hint = document.getElementById('scrollHint');
+    if(hint) hint.style.opacity = window.scrollY > 180 ? '0' : '.55';
+  });
+
+  // season hover: show/hide glow
+  document.querySelectorAll('.cal-col').forEach(col => {
+    col.addEventListener('mouseenter', () => {
+      document.querySelectorAll('.cal-col').forEach(c => c.style.opacity = '0.6');
+      col.style.opacity = '1';
+    });
+    col.addEventListener('mouseleave', () => {
+      document.querySelectorAll('.cal-col').forEach(c => c.style.opacity = '1');
+    });
+  });
+</script>
+</body>
+</html>
