@@ -361,7 +361,6 @@ nav a:hover::after { width:100%; }
    MONTHLY FEATURE
 ══════════════════════════════ */
 .section-monthly {
-  padding:88px 52px;
   display:grid; grid-template-columns:1fr 0.5px 1fr;
   gap:0; background:var(--parchment);
   position:relative; overflow:hidden;
@@ -373,8 +372,8 @@ nav a:hover::after { width:100%; }
   pointer-events:none; white-space:nowrap;
 }
 .monthly-divider { background:var(--rule); }
-.monthly-text { padding-right:60px; }
-.monthly-visual { padding-left:60px; }
+.monthly-text { padding:88px 60px 88px 52px; }
+.monthly-visual { position:relative; min-height:520px; }
 
 .flower-tag {
   display:inline-flex; align-items:center; gap:8px;
@@ -393,12 +392,14 @@ nav a:hover::after { width:100%; }
   background:rgba(200,184,154,.2); border:1px solid var(--warm-stone);
   padding:5px 14px;
 }
-/* monthly image frame */
+/* monthly image frame — 填滿右欄，不用固定比例 */
 .monthly-img-frame {
-  width:100%; aspect-ratio:4/5; background:var(--warm-stone);
-  position:relative; overflow:hidden;
+  position:absolute; inset:0;
+  background:var(--warm-stone);
+  overflow:hidden;
 }
-.monthly-img-frame svg { width:100%; height:100%; }
+.monthly-img-frame svg { width:100%; height:100%; display:block; }
+.monthly-img-frame img { width:100%; height:100%; object-fit:cover; display:block; }
 .monthly-caption {
   position:absolute; bottom:0; left:0; right:0;
   padding:28px 22px 22px;
