@@ -91,7 +91,7 @@ nav a:hover::after { width:100%; }
    HERO
 ══════════════════════════════ */
 .hero {
-  height:100vh; min-height:600px;
+  height:calc(100vh - 140px); min-height:520px;
   display:grid; grid-template-columns:1fr 1fr;
   position:relative; overflow:hidden;
 }
@@ -194,79 +194,86 @@ nav a:hover::after { width:100%; }
   border-bottom:0.5px solid var(--rule);
 }
 
-/* 上列：日期主列 */
+/* 上列：日期主列 — 單行，不換行 */
 .info-date-row {
-  display:flex; align-items:baseline; gap:20px;
-  padding:16px 52px 14px;
+  display:flex; align-items:center; gap:0;
   border-bottom:0.5px solid var(--rule);
-  flex-wrap:wrap;
+  overflow:hidden;
 }
 .info-today-label {
   font-family:'EB Garamond',serif; font-style:italic;
   font-size:12px; letter-spacing:.3em; color:var(--gold);
+  padding:12px 18px 12px 52px; flex-shrink:0;
+  border-right:0.5px solid var(--rule);
 }
 .info-date {
-  font-family:'Noto Serif TC',serif; font-size:20px; font-weight:400;
+  font-family:'Noto Serif TC',serif; font-size:17px; font-weight:400;
   letter-spacing:.08em; color:var(--ink);
+  padding:12px 16px; flex-shrink:0;
 }
 .info-jieqi {
   font-family:'Noto Serif TC',serif; font-size:13px;
   letter-spacing:.14em; color:var(--bark);
+  padding-right:14px; flex-shrink:0;
 }
 .info-weekday {
   font-family:'EB Garamond',serif; font-style:italic;
   font-size:13px; letter-spacing:.2em; color:var(--warm-stone);
+  padding-right:20px; flex-shrink:0;
 }
 .info-separator {
-  width:1px; height:14px; background:var(--rule); align-self:center; flex-shrink:0;
+  width:0.5px; height:16px; background:var(--rule); flex-shrink:0;
 }
-/* 本月主角 inline */
 .info-monthly-label {
   font-family:'EB Garamond',serif; font-style:italic;
   font-size:12px; letter-spacing:.26em; color:var(--gold);
+  padding:0 14px 0 20px; flex-shrink:0;
 }
 .info-monthly-name {
   font-family:'Noto Serif TC',serif; font-size:15px;
   letter-spacing:.12em; color:var(--ink); font-weight:400;
+  padding-right:14px; flex-shrink:0;
 }
 .info-monthly-desc {
   font-family:'Noto Serif TC',serif; font-weight:300;
   font-size:12px; color:var(--bark); letter-spacing:.06em;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 }
 
-/* 下列：三欄資訊 */
+/* 下列：三欄 — 緊湊，viewport 內可見 */
 .info-cols {
   display:grid; grid-template-columns:1fr 1fr 1fr;
 }
 .info-col {
-  padding:20px 36px 22px 52px;
+  padding:14px 24px 16px 52px;
   border-right:0.5px solid var(--rule);
 }
 .info-col:last-child { border-right:none; }
 .info-col-label {
   font-family:'EB Garamond',serif; font-style:italic;
-  font-size:11px; letter-spacing:.28em; color:var(--gold); margin-bottom:6px;
+  font-size:11px; letter-spacing:.28em; color:var(--gold); margin-bottom:4px;
 }
 .info-col-main {
-  font-family:'Noto Serif TC',serif; font-size:15px;
-  letter-spacing:.1em; color:var(--ink); margin-bottom:5px;
+  font-family:'Noto Serif TC',serif; font-size:14px;
+  letter-spacing:.1em; color:var(--ink); margin-bottom:3px;
 }
 .info-col-sub {
   font-family:'Noto Sans TC',sans-serif; font-weight:300;
-  font-size:12px; color:var(--bark); letter-spacing:.06em; line-height:1.8;
+  font-size:11px; color:var(--bark); letter-spacing:.06em; line-height:1.7;
 }
 .info-count {
-  display:inline-flex; align-items:center; gap:6px; margin-top:10px;
-  border:0.5px solid var(--warm-stone); padding:4px 14px;
+  display:inline-flex; align-items:center; gap:5px; margin-top:6px;
+  border:0.5px solid var(--warm-stone); padding:2px 10px;
 }
 .info-count-num {
-  font-family:'EB Garamond',serif; font-size:20px;
+  font-family:'EB Garamond',serif; font-size:17px;
   color:var(--deep-bark); line-height:1;
 }
 .info-count-lbl {
   font-family:'Noto Serif TC',serif; font-size:11px;
   letter-spacing:.12em; color:var(--bark);
 }
+
 
 /* ══════════════════════════════
    FOUR SEASONS CALENDAR
@@ -615,16 +622,15 @@ footer {
     <span class="logo-en">Floral Seasons</span>
   </div>
   <nav>
-    <a href="pages/seasonal.html" target="_blank">時令之詩</a>
-    <a href="pages/encyclopedia.html" target="_blank">花間辭典</a>
-    <a href="#sellers" class="nav-cta" target="_blank">推薦花店</a>
+    <a href="pages/seasonal.html">時令之詩</a>
+    <a href="pages/encyclopedia.html">花間辭典</a>
+    <a href="#sellers" class="nav-cta">推薦花店</a>
   </nav>
 </header>
 
 <!-- ═══ HERO ═══ -->
 <section class="hero">
   <div class="hero-left">
-    <div class="hero-stamp fade-up"><span>May · 五月 · 小滿</span></div>
     <h1 class="hero-title fade-up">
       每一束花<br>都是<strong>未說出口</strong>的話
       <em>Every bloom, a silent language</em>
@@ -854,7 +860,7 @@ footer {
   <div class="fade-up">
     <p class="section-label">依心情選花 · Find by Feeling</p>
     <h2 class="section-title">你想表達什麼？<br>讓花語幫你說</h2>
-    <a href="pages/encyclopedia.html" target="_blank" class="btn-ghost" style="margin-top:20px;display:inline-block;font-size:12px;padding:10px 24px;">查看花語辭典 →</a>
+    <a href="pages/encyclopedia.html" class="btn-ghost" style="margin-top:20px;display:inline-block;font-size:12px;padding:10px 24px;">查看花語辭典 →</a>
   </div>
   <div class="recip-grid">
     <div class="recip-card fade-up">
@@ -1031,7 +1037,7 @@ footer {
     <div class="footer-col-title">網站導覽</div>
     <div class="footer-links">
       <a href="#">首頁</a><a href="#">時令之詩</a>
-      <a href="pages/encyclopedia.html" target="_blank">花間辭典</a><a href="#">推薦花店</a>
+      <a href="pages/encyclopedia.html">花間辭典</a><a href="#">推薦花店</a>
     </div>
   </div>
   <div>
