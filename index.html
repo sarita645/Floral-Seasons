@@ -88,114 +88,98 @@ nav a:hover::after { width:100%; }
 .nav-cta:hover { background:var(--bark) !important; }
 
 /* ══════════════════════════════
-   HERO  —  left text / right visual (asymm, V1 style)
+   HERO
 ══════════════════════════════ */
 .hero {
-  min-height:100vh;
+  height:100vh; min-height:600px;
   display:grid; grid-template-columns:1fr 1fr;
   position:relative; overflow:hidden;
 }
 .hero-left {
-  display:flex; flex-direction:column; justify-content:flex-end;
-  padding:0 48px 88px 60px; position:relative; z-index:2;
+  display:flex; flex-direction:column; justify-content:center;
+  padding:120px 52px 80px 60px;
+  position:relative; z-index:2;
 }
-/* stamp badge – C style */
 .hero-stamp {
   display:inline-flex; align-items:center; gap:8px;
-  border:0.5px solid var(--mist-blue);
-  padding:5px 16px; margin-bottom:22px; width:fit-content;
+  border:0.5px solid var(--warm-stone);
+  padding:5px 16px; margin-bottom:36px; width:fit-content;
 }
 .hero-stamp span {
   font-family:'EB Garamond',serif; font-style:italic;
-  font-size:12px; letter-spacing:.28em; color:var(--mist-blue);
+  font-size:12px; letter-spacing:.28em; color:var(--bark);
 }
 .hero-title {
   font-family:'Noto Serif TC',serif;
-  font-size:clamp(40px,5vw,64px); font-weight:300; line-height:1.35;
-  letter-spacing:.08em; color:var(--ink); margin-bottom:24px;
+  font-size:clamp(44px,5vw,68px); font-weight:300; line-height:1.3;
+  letter-spacing:.06em; color:var(--ink); margin-bottom:28px;
 }
 .hero-title strong { font-weight:500; color:var(--gold); }
 .hero-title em {
   font-style:italic; font-family:'EB Garamond',serif;
-  font-size:.68em; color:var(--bark);
-  display:block; letter-spacing:.12em; margin-top:6px;
+  font-size:.52em; color:var(--bark);
+  display:block; letter-spacing:.14em; margin-top:10px; font-weight:300;
 }
 .hero-desc {
   font-family:'Noto Serif TC',serif; font-weight:300;
-  font-size:14px; line-height:2.1; color:var(--bark);
-  max-width:360px; margin-bottom:44px;
+  font-size:13px; line-height:2.0; color:var(--bark);
+  max-width:320px; margin-bottom:48px;
 }
-.hero-actions { display:flex; gap:14px; align-items:center; }
+.hero-actions { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
 .btn-primary {
-  font-family:'Noto Serif TC',serif; font-size:13px; letter-spacing:.18em;
-  color:var(--cream); background:var(--deep-bark);
-  border:none; padding:13px 30px; cursor:pointer;
+  font-family:'Noto Serif TC',serif; font-size:13px; letter-spacing:.14em;
+  color:var(--cream); background:var(--ink);
+  border:none; padding:14px 32px; cursor:pointer;
   transition:all .3s; text-decoration:none; display:inline-block;
 }
-.btn-primary:hover { background:var(--bark); transform:translateY(-1px); }
+.btn-primary:hover { background:var(--deep-bark); }
 .btn-ghost {
-  font-family:'Noto Serif TC',serif; font-size:13px; letter-spacing:.15em;
-  color:var(--deep-bark); background:none; border:1px solid var(--warm-stone);
-  padding:12px 26px; cursor:pointer; transition:all .3s;
+  font-family:'Noto Serif TC',serif; font-size:13px; letter-spacing:.14em;
+  color:var(--ink); background:none; border:1px solid var(--ink);
+  padding:13px 28px; cursor:pointer; transition:all .3s;
   text-decoration:none; display:inline-block;
 }
-.btn-ghost:hover { border-color:var(--deep-bark); }
+.btn-ghost:hover { background:var(--ink); color:var(--cream); }
 
-/* right panel */
+/* right panel — fullbleed photo */
 .hero-right {
   position:relative; overflow:hidden;
-  display:flex; align-items:center; justify-content:center;
-  padding-top:80px;
 }
-/* ── Hero single image ── */
-.swatch-cluster {
-  width:78%; max-width:440px;
-  position:relative; overflow:hidden;
-}
-.swatch-cluster img {
+.hero-right img.hero-photo {
   width:100%; height:100%;
-  object-fit:cover; display:block;
-  animation:floatGently 6s ease-in-out infinite;
+  object-fit:cover; object-position:center;
+  display:block;
 }
-/* placeholder shown when image is missing */
-.swatch-cluster .swatch-placeholder {
-  width:100%; aspect-ratio:4/5;
+/* placeholder when no image */
+.hero-right .hero-photo-placeholder {
+  width:100%; height:100%;
   background:var(--parchment);
-  display:flex; flex-direction:column;
-  align-items:center; justify-content:center; gap:10px;
+  display:flex; align-items:center; justify-content:center;
 }
-.swatch-cluster .swatch-placeholder svg { opacity:.3; }
-.swatch-cluster .swatch-placeholder span {
+.hero-right .hero-photo-placeholder span {
   font-family:'EB Garamond',serif; font-style:italic;
-  font-size:12px; letter-spacing:.22em; color:var(--bark); opacity:.55;
+  font-size:13px; letter-spacing:.2em; color:var(--warm-stone);
 }
 
-/* month badge (rotating) */
+/* month badge */
 .month-badge {
-  position:absolute; top:130px; right:44px;
-  width:96px; height:96px; border-radius:50%;
-  border:0.5px solid var(--warm-stone);
+  position:absolute; top:52px; right:52px; z-index:10;
+  width:80px; height:80px; border-radius:50%;
+  border:0.5px solid rgba(245,240,232,.6);
   display:flex; align-items:center; justify-content:center;
-  background:rgba(245,240,232,.88); backdrop-filter:blur(4px);
-  animation:spinBadge 20s linear infinite;
+  background:rgba(245,240,232,.82); backdrop-filter:blur(6px);
 }
 .month-badge-inner {
-  display:flex; flex-direction:column; align-items:center; gap:3px;
-  animation:spinBadge 20s linear reverse infinite;
+  display:flex; flex-direction:column; align-items:center; gap:2px;
 }
 .month-num {
-  font-family:'EB Garamond',serif; font-size:30px; line-height:1; color:var(--deep-bark);
+  font-family:'EB Garamond',serif; font-size:26px; line-height:1; color:var(--deep-bark);
 }
 .month-lbl {
-  font-family:'Noto Serif TC',serif; font-size:10px; letter-spacing:.2em; color:var(--bark);
+  font-family:'Noto Serif TC',serif; font-size:9px; letter-spacing:.2em; color:var(--bark);
 }
-@keyframes spinBadge { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
 
-/* floral illustration */
-.hero-floral {
-  width:78%; max-width:420px;
-  animation:floatGently 6s ease-in-out infinite;
-}
+/* legacy — keep for floatGently used elsewhere */
 @keyframes floatGently { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
 
 /* ══════════════════════════════
@@ -640,29 +624,24 @@ footer {
   </div>
 
   <div class="hero-right">
+    <!-- 月份徽章 -->
     <div class="month-badge">
       <div class="month-badge-inner">
         <span class="month-num">05</span>
         <span class="month-lbl">五月</span>
       </div>
     </div>
-
-    <!-- 首頁主視覺圖片 — 換圖只需替換 swatches-01.png -->
-    <div class="swatch-cluster fade-up">
-      <img
-        src="assets/images/homepage/swatches/swatch-01.png"
-        alt="歲月花跡 · 本月花材"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-      >
-      <div class="swatch-placeholder" style="display:none">
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-          <rect x="3" y="3" width="30" height="30" rx="3" stroke="#8b7355" stroke-width="1.4"/>
-          <circle cx="12" cy="13" r="3.5" stroke="#8b7355" stroke-width="1.4"/>
-          <path d="M3 25 L11 17 L18 24 L23 19 L33 28" stroke="#8b7355" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span>swatches-01.png</span>
-      </div>
+    <!-- 全幅花束照片：換圖只需替換 swatch-01.png -->
+    <img
+      class="hero-photo"
+      src="assets/images/homepage/swatches/swatch-01.png"
+      alt="歲月花跡 · 本月花材"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+    >
+    <div class="hero-photo-placeholder" style="display:none">
+      <span>swatch-01.png</span>
     </div>
+  </div>
   </div>
 </section>
 
